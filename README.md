@@ -100,3 +100,62 @@ To run a specific test file:
 ```bash
 flutter test test/user_provider_test.dart
 ```
+
+## Continuous Integration/Continuous Deployment (CI/CD)
+
+[![Flutter CI/CD](https://github.com/{username}/{repo}/actions/workflows/flutter_ci_cd.yml/badge.svg)](https://github.com/{username}/{repo}/actions/workflows/flutter_ci_cd.yml)
+
+This project uses GitHub Actions for automated testing, building, and deployment. The CI/CD pipeline includes:
+
+### Automated Workflows
+
+1. **Build and Test**
+
+   - Code formatting verification
+   - Static code analysis
+   - Unit and widget tests execution
+   - Test coverage reporting
+
+2. **Build Pipeline**
+
+   - Android APK generation
+   - iOS build verification
+   - Artifact storage for deployment
+
+3. **Deployment Stages**
+
+   - **Staging** (develop branch)
+
+     - Automated deployment to Firebase App Distribution
+     - Available to registered testers
+
+   - **Production** (main branch)
+     - Automated deployment to Google Play Store
+     - Production track release
+
+### Workflow Triggers
+
+- Push to `main` branches
+- Pull requests to `main` branches
+
+### Required Secrets
+
+The following secrets need to be configured in GitHub repository settings:
+
+- `FIREBASE_APP_ID`: Firebase application identifier
+- `CREDENTIAL_FILE_CONTENT`: Firebase service account credentials
+- `SERVICE_ACCOUNT_JSON`: Google Play Console service account
+
+### Quality Checks
+
+- Dart code formatting
+- Flutter static analysis
+- Automated tests with coverage
+- Build verification for both platforms
+
+### Build Artifacts
+
+- Android: Release APK
+- iOS: Release build (unsigned)
+
+For detailed workflow configuration, see `.github/workflows/flutter_ci_cd.yml`
